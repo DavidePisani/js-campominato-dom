@@ -4,6 +4,24 @@
     box-sizing: border-box;
 }
 
+img{
+    width: 10%;
+}
+
+header{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.head-left{
+    display: flex;
+    align-items: center;
+}
+
 main {
     background-color: aquamarine;
     padding: 50px;

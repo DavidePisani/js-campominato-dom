@@ -70,16 +70,18 @@ function startGame (){
         // Aggiungere la classe square
         newSquare.classList.add('square');
         newSquare.classList.add(mainClass);
-        // richiamo la funzione peri il ceck degli sqere
+        // richiamo la funzione peri il ceck 
         newSquare.addEventListener ( 'click', checkClick)
         // appendo
         dimensionGrid.append(newSquare)       
       }
       
     }
-
+// funzione che determinazione colore box
     function checkClick(){
-   
+  //  se il box cliccato è una bomba allora coloro di rosso il box e scrivo in pagina che hai perso
+  //  se il boc cliccato non è una bomba allora lo coloro di blu
+  //  quando ho raggiunto tutti i tentativi senza mai prendere la bomba llora scrivo in pagina che ho vinto 
   let userNumber = parseInt(this.querySelector('span').innerHTML);
       if(bombs.includes(userNumber)){ 
         this.classList.add('red');
@@ -99,15 +101,24 @@ function startGame (){
                       
     }
 
+    // funzione per evitare i click dopo la fine del gioco 
     function stopClick(){
+      // faccio un ciclo per prendere tutti i quadrati 
+      // mi selezione tutti i box che hanno l'evento del click
+      // rimuovo l'evento del click da tutti 
+      // e a tutti i quadrati che contengono un numero che si trova dentro l'arrey delle bombe
+      // aggiungo la classe red in modo tale da scoprire tutte le bombe 
+      let b = 1;
       for( let i = 0; i < gameRange; i++ ){
       let allNewSquare = document.querySelectorAll('.square');
       allNewSquare[i].removeEventListener("click", checkClick);
-
-      if(bombs.includes(i)){
+        
+      if(bombs.includes(b)){
         let allNewSquare = document.querySelectorAll('.square');
-        allNewSquare[i].classList.add('red')
+        allNewSquare[b-1].classList.add('red')
+        
       }
+      b++;
     }    
   }
 
