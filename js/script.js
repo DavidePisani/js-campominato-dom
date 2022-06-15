@@ -19,6 +19,12 @@ const playBtn = document.getElementById("play-btn");
 playBtn.addEventListener('click', startGame);
 
 function startGame (){
+
+  const dimensionGrid = document.getElementById("main-grid")
+  const userMessage = document.querySelector('#user-message')
+  // reset
+  dimensionGrid.innerHTML = ''
+
     // numero di bombe 
     const numBombs = 16
     const userLevel = document.getElementById('level-game').value
@@ -27,34 +33,79 @@ function startGame (){
     let mainClass
     if (userLevel === '1'){
         gameRange = 100
-        mainClass = 'Easy'
+        mainClass = 'easy'
     }else if (userLevel === '2'){
         gameRange = 81
-        mainClass = 'Medium'
+        mainClass = 'medium'
     } else if (userLevel === '3') {
         gameRange = 49
-        mainClass = 'Hard'
+        mainClass = 'hard'
     } 
 
     // numero tentativi 
     const gameAttempts = numBombs - gameRange
-
- // richichiamo il generatore di bombe    
+    
+    // richichiamo il generatore di bombe    
     bombs = randomBombsGenerate (numBombs, 1, gameRange)
     console.log(bombs)
 
+    // creo un arrey per calcolare quanti numeri inserisce l'utente
+    // se il numero indicato dall'utente è nell'arrey hai perso
+    // altrimenti lo pushi nell'arrey 
+    const rightNumbers = []
+    console.log(rightNumbers)
+
+    // genero la griglia
+    generateGrid()
+
+    function generateGrid(){
+      dimensionGrid.classList.add(mainClass);
+
+      for(let i = 1; i <= gameRange; i++ ) {
+        // creo cella
+        // <!-- <div class="square"><span>1</span></div> -->
+        const newSquare = document.createElement('div');
+        // popolare il numero
+        newSquare.innerHTML = `<span>${i}</span>`;
+        // Aggiungere la classe square
+        newSquare.classList.add('square');
+        newSquare.classList.add(mainClass);
+        // richiamo la funzione peri il ceck degli sqere
+        newSquare.addEventListener ( 'click', checkClick)
+        // appendo
+        dimensionGrid.append(newSquare)       
+      }
+      
+    }
+
+    function checkClick(){
+   
+  let userNumber = parseInt(this.querySelector('span').innerHTML);
+      if(bombs.includes(userNumber)){ 
+        this.classList.add('red');
+        userMessage.innerHTML = `ops sei ESPLOSO!!, hai utilizzato ${rightNumbers} tentativi.`;  
+    } else {
+
+            if(!rightNumbers.includes (userNumber)){
+                rightNumbers.push(userNumber)
+                this.classList.add('blue');
+            }
+            
+            if(rightNumbers.length === gameAttempts){
+                 userMessage.innerHTML = `Hai VINTO,non sei ESPLOSO!!, hai utilizzato il massimo dei tentativi: ${rightNumbers}`;
+             }            
+    }                   
+      this.style.pointerEvents = 'none';
+   
+    }
+
+    
 
 
 
 
 
-
-
-
-
-
-
-
+  }
        /*--------------
         FUNZIONI
    ----------------- */ 
@@ -83,4 +134,3 @@ function randomBombsGenerate(numBomb, minRange, maxRange) {
 function bombsGen(min, max) {  
  return Math.floor(Math.random() * (max - min + 1) ) + min; }
 
-}

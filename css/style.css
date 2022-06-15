@@ -5,7 +5,7 @@
 }
 
 main {
-    background-color: lightcyan;
+    background-color: aquamarine;
     padding: 50px;
     display: flex;
     justify-content: center;
@@ -15,7 +15,6 @@ main {
 #main-grid {
     width: 600px;
     height: 600px;
-    background-color: antiquewhite;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
@@ -23,18 +22,33 @@ main {
 
 
 .square {
-    border: 1px solid black; 
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
 }
 
 
-#main-grid.easy{
+.easy{
     width: calc(100% / 10);
+    height: calc(100% / 10);
 }
 
-#main-grid.medium{
+.medium{
     width: calc(100% / 9);
+    height: calc(100% / 9);
 }
 
-#main-grid.hard{
+.hard{
     width: calc(100% / 7);
+    height: calc(100% / 7);
+}
+
+
+.red{
+    background-color: #dc143c;
+}
+
+.blue{
+   background-color: cornflowerblue;
 }
