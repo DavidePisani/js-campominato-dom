@@ -22,8 +22,12 @@ function startGame (){
 
   const dimensionGrid = document.getElementById("main-grid")
   const userMessage = document.querySelector('#user-message')
-  // reset
-  dimensionGrid.innerHTML = ''
+
+    // reset
+
+    dimensionGrid.classList  = ''
+    dimensionGrid.innerHTML = ''
+    userMessage.innerHTML = ''
 
     // numero di bombe 
     const numBombs = 16
@@ -41,7 +45,6 @@ function startGame (){
         gameRange = 49
         mainClass = 'hard'
     } 
-
     // numero tentativi 
     const gameAttempts = numBombs - gameRange
     
