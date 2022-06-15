@@ -24,10 +24,19 @@ header{
 
 main {
     background-color: aquamarine;
-    padding: 50px;
+    padding: 50px;   
+}
+
+.game{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.text-mess{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 18px;
 }
 
 #main-grid {
@@ -69,4 +78,14 @@ main {
 
 .blue{
    background-color: cornflowerblue;
+}
+
+footer{
+    width: 80%;
+    margin: 0 auto;
+    line-height: 100px;
+}
+
+footer div{
+    font-size: 30px;
 }
