@@ -83,7 +83,8 @@ function startGame (){
   let userNumber = parseInt(this.querySelector('span').innerHTML);
       if(bombs.includes(userNumber)){ 
         this.classList.add('red');
-        userMessage.innerHTML = `ops sei ESPLOSO!!, hai utilizzato ${rightNumbers} tentativi.`;  
+        userMessage.innerHTML = `ops sei ESPLOSO!!, hai utilizzato ${rightNumbers.length} tentativi.`; 
+        stopClick()       
     } else {
 
             if(!rightNumbers.includes (userNumber)){
@@ -92,20 +93,25 @@ function startGame (){
             }
             
             if(rightNumbers.length === gameAttempts){
-                 userMessage.innerHTML = `Hai VINTO,non sei ESPLOSO!!, hai utilizzato il massimo dei tentativi: ${rightNumbers}`;
+                 userMessage.innerHTML = `Hai VINTO,non sei ESPLOSO!!, hai utilizzato il massimo dei tentativi: ${rightNumbers.length}`;
              }            
-    }                   
-      this.style.pointerEvents = 'none';
-   
+    }  
+                      
     }
 
-    
+    function stopClick(){
+      for( let i = 0; i < gameRange; i++ ){
+      let allNewSquare = document.querySelectorAll('.square');
+      allNewSquare[i].removeEventListener("click", checkClick);
 
-
-
-
-
+      if(bombs.includes(i)){
+        let allNewSquare = document.querySelectorAll('.square');
+        allNewSquare[i].classList.add('red')
+      }
+    }    
   }
+
+}
        /*--------------
         FUNZIONI
    ----------------- */ 
@@ -132,5 +138,6 @@ function randomBombsGenerate(numBomb, minRange, maxRange) {
 
 // funzione per generare numeri random 
 function bombsGen(min, max) {  
- return Math.floor(Math.random() * (max - min + 1) ) + min; }
+ return Math.floor(Math.random() * (max - min + 1) ) + min;
+ }
 
